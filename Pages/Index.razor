@@ -1,0 +1,63 @@
+﻿@page "/"
+
+
+<TelerikWindow Visible="true" Width="500px" Centered="true" Modal="true" Resizable="false" Draggable="true" CloseOnOverlayClick="true">
+    <WindowTitle>
+        <strong>Save</strong>
+    </WindowTitle>
+    <WindowActions>
+        <WindowAction Name="Close" />
+    </WindowActions>
+    <WindowContent>
+        @if (@Options != null)
+        {
+            <TelerikForm Model="@Options" Columns="2" ColumnSpacing="5px">                
+                <FormItems>
+
+                    <FormItem LabelText="Option 1" Field="@(nameof(SaveWindowOptions.Option1))" ColSpan="1">
+                    </FormItem>
+
+                    <FormItem LabelText="Warning Number 1" ColSpan="2">
+                        <Template>
+                            <div class="k-validation-summary k-messagebox k-messagebox-error" role="alert">
+                                <p style="font-weight:bold;">Warning Number 1 ████████</p>
+                                <p>The following is a big list of stuff that this warning is for :</p>
+                                <ul style="max-height:150px;overflow-y:auto;">
+                                    @foreach (var i in new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 })
+                                    {
+                                        <li>BLa Bla Bla @i</li>
+                                    }
+                                </ul>
+                            </div>
+                        </Template>
+                    </FormItem>
+
+                    <FormItem LabelText="Warning Number 2" ColSpan="2">
+                        <Template>
+                            <div class="k-validation-summary k-messagebox k-messagebox-error" role="alert">
+                                <p style="font-weight:bold;">Warning Number 2 ████████</p>
+                                <p>Bla Bla BLa BLa BLa</p>
+                            </div>
+                        </Template>
+                    </FormItem>
+
+
+
+                </FormItems>
+            </TelerikForm>
+        }
+    </WindowContent>
+</TelerikWindow>
+
+@code {
+
+
+    public SaveWindowOptions? Options { get; set; } = new SaveWindowOptions();
+
+    public class SaveWindowOptions
+    {
+        public bool Option1 { get; set; }
+
+    }
+
+}
